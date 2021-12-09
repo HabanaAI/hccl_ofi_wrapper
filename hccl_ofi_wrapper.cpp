@@ -1,4 +1,4 @@
-#include "ofi_plugin.h"
+#include "hccl_ofi_wrapper.h"
 #include <cstring>
 
 namespace hccl

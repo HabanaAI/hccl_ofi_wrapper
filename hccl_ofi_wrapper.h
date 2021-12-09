@@ -3,7 +3,7 @@
 #include <sys/socket.h>
 #include <set>
 #include <map>
-#include <ofi_plugin_interface.h>
+#include "hccl_ofi_wrapper_interface.h"
 
 namespace hccl
 {
