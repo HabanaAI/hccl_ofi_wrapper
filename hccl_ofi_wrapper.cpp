@@ -1,3 +1,7 @@
+// Copyright (c) 2021 Habana Labs, Ltd.
+// SPDX-License-Identifier: BSD-3-Clause
+
+
 #include "hccl_ofi_wrapper.h"
 #include <cstring>
 

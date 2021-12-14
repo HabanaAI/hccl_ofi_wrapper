@@ -1,3 +1,6 @@
+# Copyright (c) 2021 Habana Labs, Ltd.
+# SPDX-License-Identifier: BSD-3-Clause
+
 CC = g++
 
 ifeq (${LIBFABRIC_ROOT},)

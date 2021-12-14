@@ -1,3 +1,7 @@
+// Copyright (c) 2021 Habana Labs, Ltd.
+// SPDX-License-Identifier: BSD-3-Clause
+
+
 #pragma once
 #include <iostream>
 #include <sys/socket.h>
