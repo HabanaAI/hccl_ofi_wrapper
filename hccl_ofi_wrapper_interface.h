@@ -66,5 +66,7 @@ public:
     virtual const char*
                   w_fi_cq_strerror(struct fid_cq* cq, int prov_errno, const void* err_data, char* buf, size_t len) = 0;
     virtual void* w_fi_mr_desc(struct fid_mr* mr)                                                                  = 0;
+    virtual int
+    w_fi_mr_regattr(struct fid_domain* domain, const struct fi_mr_attr* attr, uint64_t flags, struct fid_mr** mr) = 0;
 };
 }  // namespace hccl

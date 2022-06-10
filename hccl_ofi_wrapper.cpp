@@ -135,6 +135,14 @@ void* ofi_plugin::w_fi_mr_desc(struct fid_mr* mr)
     return fi_mr_desc(mr);
 }
 
+int ofi_plugin::w_fi_mr_regattr(struct fid_domain*       domain,
+                                const struct fi_mr_attr* attr,
+                                uint64_t                 flags,
+                                struct fid_mr**          mr)
+{
+    return fi_mr_regattr(domain, attr, flags, mr);
+}
+
 extern "C" ofi_plugin_handle create_ofi_plugin_handle()
 {
     return std::unique_ptr<ofi_plugin>(new ofi_plugin());
