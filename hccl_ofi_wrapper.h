@@ -29,6 +29,7 @@ public:
     char*           w_fi_tostr(const void* data, enum fi_type datatype);
     void            w_fi_close(fid_t domain);
     int             w_fi_fabric(struct fi_fabric_attr* attr, struct fid_fabric** fabric, void* context);
+
     int w_fi_domain(struct fid_fabric* fabric, struct fi_info* info, struct fid_domain** domain, void* context);
     int w_fi_endpoint(struct fid_domain* domain, struct fi_info* info, struct fid_ep** ep, void* context);
     int w_fi_cq_open(struct fid_domain* domain, struct fi_cq_attr* attr, struct fid_cq** cq, void* context);
@@ -57,5 +58,14 @@ public:
     const char* w_fi_cq_strerror(struct fid_cq* cq, int prov_errno, const void* err_data, char* buf, size_t len);
     void*       w_fi_mr_desc(struct fid_mr* mr);
     int w_fi_mr_regattr(struct fid_domain* domain, const struct fi_mr_attr* attr, uint64_t flags, struct fid_mr** mr);
+    uint64_t    w_fi_mr_key(struct fid_mr* mr);
+    ssize_t     w_fi_read(struct fid_ep* ep,
+                          void*          buf,
+                          size_t         len,
+                          void*          desc,
+                          fi_addr_t      src_addr,
+                          uint64_t       addr,
+                          uint64_t       key,
+                          void*          context);
 };
 }  // namespace hccl

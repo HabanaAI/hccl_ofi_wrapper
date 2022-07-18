@@ -45,14 +45,15 @@ public:
     virtual int w_fi_enable(struct fid_ep* ep)                                                                      = 0;
     virtual int w_fi_getname(fid_t fid, void* addr, size_t* addrlen)                                                = 0;
     virtual int
-                    w_fi_av_insert(struct fid_av* av, void* addr, size_t count, fi_addr_t* fi_addrs, uint64_t flags, void* context) = 0;
+    w_fi_av_insert(struct fid_av* av, void* addr, size_t count, fi_addr_t* fi_addrs, uint64_t flags, void* context) = 0;
+
     virtual ssize_t w_fi_tsend(struct fid_ep* ep,
                                const void*    buf,
                                size_t         len,
                                void*          desc,
                                fi_addr_t      dest_addr,
                                uint64_t       tag,
-                               void*          context)                                                       = 0;
+                               void*          context) = 0;
     virtual ssize_t w_fi_trecv(struct fid_ep* ep,
                                void*          buf,
                                size_t         len,
@@ -60,7 +61,8 @@ public:
                                fi_addr_t      src_addr,
                                uint64_t       tag,
                                uint64_t       ignore,
-                               void*          context)                                                       = 0;
+                               void*          context) = 0;
+
     virtual ssize_t w_fi_cq_read(struct fid_cq* cq, void* buf, size_t count)                        = 0;
     virtual ssize_t w_fi_cq_readerr(struct fid_cq* cq, struct fi_cq_err_entry* buf, uint64_t flags) = 0;
     virtual const char*
@@ -68,5 +70,15 @@ public:
     virtual void* w_fi_mr_desc(struct fid_mr* mr)                                                                  = 0;
     virtual int
     w_fi_mr_regattr(struct fid_domain* domain, const struct fi_mr_attr* attr, uint64_t flags, struct fid_mr** mr) = 0;
+    virtual uint64_t w_fi_mr_key(struct fid_mr* mr) = 0;
+
+    virtual ssize_t w_fi_read(struct fid_ep* ep,
+                              void*          buf,
+                              size_t         len,
+                              void*          desc,
+                              fi_addr_t      src_addr,
+                              uint64_t       addr,
+                              uint64_t       key,
+                              void*          context) = 0;
 };
 }  // namespace hccl

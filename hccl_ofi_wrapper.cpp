@@ -143,6 +143,23 @@ int ofi_plugin::w_fi_mr_regattr(struct fid_domain*       domain,
     return fi_mr_regattr(domain, attr, flags, mr);
 }
 
+ssize_t ofi_plugin::w_fi_read(struct fid_ep* ep,
+                              void*          buf,
+                              size_t         len,
+                              void*          desc,
+                              fi_addr_t      src_addr,
+                              uint64_t       addr,
+                              uint64_t       key,
+                              void*          context)
+{
+    return fi_read(ep, buf, len, desc, src_addr, addr, key, context);
+}
+
+uint64_t ofi_plugin::w_fi_mr_key(struct fid_mr* mr)
+{
+    return fi_mr_key(mr);
+}
+
 extern "C" ofi_plugin_handle create_ofi_plugin_handle()
 {
     return std::unique_ptr<ofi_plugin>(new ofi_plugin());
