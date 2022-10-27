@@ -67,5 +67,6 @@ public:
                           uint64_t       addr,
                           uint64_t       key,
                           void*          context);
+    uint32_t    w_fi_version();
 };
 }  // namespace hccl

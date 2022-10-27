@@ -160,6 +160,11 @@ uint64_t ofi_plugin::w_fi_mr_key(struct fid_mr* mr)
     return fi_mr_key(mr);
 }
 
+uint32_t ofi_plugin::w_fi_version()
+{
+    return fi_version();
+}
+
 extern "C" ofi_plugin_handle create_ofi_plugin_handle()
 {
     return std::unique_ptr<ofi_plugin>(new ofi_plugin());

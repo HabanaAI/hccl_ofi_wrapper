@@ -80,5 +80,7 @@ public:
                               uint64_t       addr,
                               uint64_t       key,
                               void*          context) = 0;
+
+    virtual uint32_t w_fi_version() = 0;
 };
 }  // namespace hccl
