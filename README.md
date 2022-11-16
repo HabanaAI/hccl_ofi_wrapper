@@ -11,7 +11,7 @@ To use HCCL over libfabric, this wrapper should be built.<br />
 Required steps:
 1. Download and install libfabric
 2. git clone https://github.com/HabanaAI/hccl_ofi_wrapper.git
-3. export LIBFABRIC_ROOT='<libFabric library location>'
+3. export LIBFABRIC_ROOT=`<libFabric library location>`
 4. cd hccl_ofi_wrapper
 5. make
 6. cp libhccl_ofi_wrapper.so /usr/lib/habanalabs/libhccl_ofi_wrapper.so
