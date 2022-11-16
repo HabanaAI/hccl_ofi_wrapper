@@ -13,6 +13,7 @@ namespace hccl
 {
 class ofi_plugin;
 using ofi_plugin_handle = std::unique_ptr<ofi_plugin>;
+#define OFI_PLUGIN_VERSION 1.0;
 
 class ofi_plugin : public ofi_plugin_interface
 {

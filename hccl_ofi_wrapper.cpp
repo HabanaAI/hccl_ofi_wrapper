@@ -165,6 +165,11 @@ uint32_t ofi_plugin::w_fi_version()
     return fi_version();
 }
 
+extern "C" double get_version()
+{
+    return OFI_PLUGIN_VERSION;
+}
+
 extern "C" ofi_plugin_handle create_ofi_plugin_handle()
 {
     return std::unique_ptr<ofi_plugin>(new ofi_plugin());

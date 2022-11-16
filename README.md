@@ -1,11 +1,22 @@
-# hccl_ofi_wrapper
+# HCCL OFI Wrapper
+HCCL (Habana Collective Communication Library) supports inter-node communication based on OFI libfabric.<br />
+HCCL OFI wrapper introduced to act as a thin layer connecting between HCCL and libfabric APIs.<br />
 
-HCCL (Habana Collective Communication Library) supports inter-Nodes communication based on OFI libFabric.
-HCCL OFI wrapper introduced to act as a thin layer connecting between HCCL and libFabric APIs. 
+# Version
+1.0.<br />
 
-Build
+# HCCL OFI Wrapper
+To use HCCL over libfabric, this wrapper should be built.<br />
 
-In order to use HCCL over libFabric, this wrapper should be built.
-After downloading and installing libFabric, HCCL OFI wrapper should be downloaded and “make” command should be triggered from the wrapper directory.
-When running HCCL, the wrapper path should be added to the LD library path. For example:
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:<hccl_ofi_wrapper.so location>
+Required steps:
+1. Download and install libfabric
+2. git clone https://github.com/HabanaAI/hccl_ofi_wrapper.git
+3. export LIBFABRIC_ROOT=<libFabric library location>
+4. cd hccl_ofi_wrapper
+5. make
+6. cp libhccl_ofi_wrapper.so /usr/lib/habanalabs/libhccl_ofi_wrapper.so
+7. ldconfig
+8. export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:<hccl_ofi_wrapper.so location>
+
+
+
