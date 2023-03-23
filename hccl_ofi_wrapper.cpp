@@ -37,9 +37,9 @@ char* ofi_plugin::w_fi_tostr(const void* data, enum fi_type datatype)
     return fi_tostr(data, datatype);
 }
 
-void ofi_plugin::w_fi_close(fid_t domain)
+int ofi_plugin::w_fi_close(fid_t domain)
 {
-    fi_close(domain);
+    return fi_close(domain);
 }
 
 int ofi_plugin::w_fi_fabric(struct fi_fabric_attr* attr, struct fid_fabric** fabric, void* context)

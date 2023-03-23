@@ -34,7 +34,7 @@ public:
     virtual void            w_fi_freeinfo(struct fi_info* info)                                                 = 0;
     virtual const char*     w_fi_strerror(int err)                                                              = 0;
     virtual char*           w_fi_tostr(const void* data, enum fi_type datatype)                                 = 0;
-    virtual void            w_fi_close(fid_t domain)                                                            = 0;
+    virtual int             w_fi_close(fid_t domain)                                                            = 0;
     virtual int             w_fi_fabric(struct fi_fabric_attr* attr, struct fid_fabric** fabric, void* context) = 0;
     virtual int
                 w_fi_domain(struct fid_fabric* fabric, struct fi_info* info, struct fid_domain** domain, void* context) = 0;

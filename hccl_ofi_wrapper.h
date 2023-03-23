@@ -28,7 +28,7 @@ public:
     void            w_fi_freeinfo(struct fi_info* info);
     const char*     w_fi_strerror(int err);
     char*           w_fi_tostr(const void* data, enum fi_type datatype);
-    void            w_fi_close(fid_t domain);
+    int             w_fi_close(fid_t domain);
     int             w_fi_fabric(struct fi_fabric_attr* attr, struct fid_fabric** fabric, void* context);
 
     int w_fi_domain(struct fid_fabric* fabric, struct fi_info* info, struct fid_domain** domain, void* context);
