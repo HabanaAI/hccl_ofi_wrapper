@@ -15,7 +15,7 @@ libfabric should be downloaded and installed in order to use it.<br />
 Please follow the instructions below:<br />
 1.  Define required version to be installed
     ```
-    export REQUIRED_VERSION=1.16.1
+    export REQUIRED_VERSION=1.20.0
     ```
 2.  Download libfabric tarball from: https://github.com/ofiwg/libfabric/releases
     ```
@@ -78,7 +78,7 @@ Please follow the instructions below:<br />
    ```
 2. Define LIBFABRIC_ROOT
    ```
-   export LIBFABRIC_ROOT=/tmp/libfabric-1.16.0
+   export LIBFABRIC_ROOT=/tmp/libfabric-1.20.0
    ```
 3. Change directory to hccl_ofi_wrapper
    ```
