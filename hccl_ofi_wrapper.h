@@ -13,7 +13,7 @@ namespace hccl
 {
 class ofi_plugin;
 using ofi_plugin_handle = std::unique_ptr<ofi_plugin>;
-#define OFI_PLUGIN_VERSION 1.0;
+#define OFI_PLUGIN_VERSION 1.1;
 
 class ofi_plugin : public ofi_plugin_interface
 {
@@ -39,6 +39,7 @@ public:
     int w_fi_enable(struct fid_ep* ep);
     int w_fi_getname(fid_t fid, void* addr, size_t* addrlen);
     int w_fi_av_insert(struct fid_av* av, void* addr, size_t count, fi_addr_t* fi_addrs, uint64_t flags, void* context);
+
     ssize_t     w_fi_tsend(struct fid_ep* ep,
                            const void*    buf,
                            size_t         len,
@@ -54,6 +55,7 @@ public:
                            uint64_t       tag,
                            uint64_t       ignore,
                            void*          context);
+
     ssize_t     w_fi_cq_read(struct fid_cq* cq, void* buf, size_t count);
     ssize_t     w_fi_cq_readerr(struct fid_cq* cq, struct fi_cq_err_entry* buf, uint64_t flags);
     const char* w_fi_cq_strerror(struct fid_cq* cq, int prov_errno, const void* err_data, char* buf, size_t len);
@@ -69,5 +71,20 @@ public:
                           uint64_t       key,
                           void*          context);
     uint32_t    w_fi_version();
+
+    struct fi_info* w_fi_dupinfo(const struct fi_info* info);
+
+    int     w_fi_eq_open(struct fid_fabric* fabric, struct fi_eq_attr* attr, struct fid_eq** eq, void* context);
+    ssize_t w_fi_eq_sread(struct fid_eq* eq, uint32_t* event, void* buf, size_t len, int timeout, uint64_t flags);
+    ssize_t w_fi_eq_readerr(struct fid_eq* eq, struct fi_eq_err_entry* buf, uint64_t flags);
+
+    int w_fi_passive_ep(struct fid_fabric* fabric, struct fi_info* info, struct fid_pep** pep, void* context);
+    int w_fi_pep_bind(struct fid_pep* pep, struct fid* bfid, uint64_t flags);
+    int w_fi_listen(struct fid_pep* pep);
+    int w_fi_connect(struct fid_ep* ep, const void* addr, const void* param, size_t paramlen);
+    int w_fi_accept(struct fid_ep* ep, const void* param, size_t paramlen);
+
+    ssize_t w_fi_send(struct fid_ep* ep, const void* buf, size_t len, void* desc, fi_addr_t dest_addr, void* context);
+    ssize_t w_fi_recv(struct fid_ep* ep, void* buf, size_t len, void* desc, fi_addr_t src_addr, void* context);
 };
 }  // namespace hccl

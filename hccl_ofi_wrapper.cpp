@@ -22,6 +22,11 @@ struct fi_info* ofi_plugin::w_fi_allocinfo()
     return fi_allocinfo();
 }
 
+struct fi_info* ofi_plugin::w_fi_dupinfo(const struct fi_info* info)
+{
+    return fi_dupinfo(info);
+}
+
 void ofi_plugin::w_fi_freeinfo(struct fi_info* info)
 {
     fi_freeinfo(info);
@@ -92,6 +97,47 @@ int ofi_plugin::w_fi_av_insert(struct fid_av* av,
     return fi_av_insert(av, addr, count, fi_addrs, flags, context);
 }
 
+int ofi_plugin::w_fi_eq_open(struct fid_fabric* fabric, struct fi_eq_attr* attr, struct fid_eq** eq, void* context)
+{
+    return fi_eq_open(fabric, attr, eq, context);
+}
+
+ssize_t
+ofi_plugin::w_fi_eq_sread(struct fid_eq* eq, uint32_t* event, void* buf, size_t len, int timeout, uint64_t flags)
+{
+    return fi_eq_sread(eq, event, buf, len, timeout, flags);
+}
+
+ssize_t ofi_plugin::w_fi_eq_readerr(struct fid_eq* eq, struct fi_eq_err_entry* buf, uint64_t flags)
+{
+    return fi_eq_readerr(eq, buf, flags);
+}
+
+int ofi_plugin::w_fi_passive_ep(struct fid_fabric* fabric, struct fi_info* info, struct fid_pep** pep, void* context)
+{
+    return fi_passive_ep(fabric, info, pep, context);
+}
+
+int ofi_plugin::w_fi_pep_bind(struct fid_pep* pep, struct fid* bfid, uint64_t flags)
+{
+    return fi_pep_bind(pep, bfid, flags);
+}
+
+int ofi_plugin::w_fi_listen(struct fid_pep* pep)
+{
+    return fi_listen(pep);
+}
+
+int ofi_plugin::w_fi_connect(struct fid_ep* ep, const void* addr, const void* param, size_t paramlen)
+{
+    return fi_connect(ep, addr, param, paramlen);
+}
+
+int ofi_plugin::w_fi_accept(struct fid_ep* ep, const void* param, size_t paramlen)
+{
+    return fi_accept(ep, param, paramlen);
+}
+
 ssize_t ofi_plugin::w_fi_tsend(struct fid_ep* ep,
                                const void*    buf,
                                size_t         len,
@@ -113,6 +159,16 @@ ssize_t ofi_plugin::w_fi_trecv(struct fid_ep* ep,
                                void*          context)
 {
     return fi_trecv(ep, buf, len, desc, src_addr, tag, ignore, context);
+}
+ssize_t
+ofi_plugin::w_fi_send(struct fid_ep* ep, const void* buf, size_t len, void* desc, fi_addr_t dest_addr, void* context)
+{
+    return fi_send(ep, buf, len, desc, dest_addr, context);
+}
+
+ssize_t ofi_plugin::w_fi_recv(struct fid_ep* ep, void* buf, size_t len, void* desc, fi_addr_t src_addr, void* context)
+{
+    return fi_recv(ep, buf, len, desc, src_addr, context);
 }
 
 ssize_t ofi_plugin::w_fi_cq_read(struct fid_cq* cq, void* buf, size_t count)

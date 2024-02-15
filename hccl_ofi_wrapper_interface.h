@@ -61,7 +61,7 @@ public:
                                fi_addr_t      src_addr,
                                uint64_t       tag,
                                uint64_t       ignore,
-                               void*          context) = 0;
+                               void*          context)          = 0;
 
     virtual ssize_t w_fi_cq_read(struct fid_cq* cq, void* buf, size_t count)                        = 0;
     virtual ssize_t w_fi_cq_readerr(struct fid_cq* cq, struct fi_cq_err_entry* buf, uint64_t flags) = 0;
@@ -82,5 +82,24 @@ public:
                               void*          context) = 0;
 
     virtual uint32_t w_fi_version() = 0;
+
+    virtual struct fi_info* w_fi_dupinfo(const struct fi_info* info) = 0;
+
+    virtual int w_fi_eq_open(struct fid_fabric* fabric, struct fi_eq_attr* attr, struct fid_eq** eq, void* context) = 0;
+    virtual ssize_t
+    w_fi_eq_sread(struct fid_eq* eq, uint32_t* event, void* buf, size_t len, int timeout, uint64_t flags) = 0;
+    virtual ssize_t w_fi_eq_readerr(struct fid_eq* eq, struct fi_eq_err_entry* buf, uint64_t flags)       = 0;
+
+    virtual int
+    w_fi_passive_ep(struct fid_fabric* fabric, struct fi_info* info, struct fid_pep** pep, void* context) = 0;
+    virtual int w_fi_pep_bind(struct fid_pep* pep, struct fid* bfid, uint64_t flags)                      = 0;
+    virtual int w_fi_listen(struct fid_pep* pep)                                                          = 0;
+    virtual int w_fi_connect(struct fid_ep* ep, const void* addr, const void* param, size_t paramlen)     = 0;
+    virtual int w_fi_accept(struct fid_ep* ep, const void* param, size_t paramlen)                        = 0;
+
+    virtual ssize_t
+    w_fi_send(struct fid_ep* ep, const void* buf, size_t len, void* desc, fi_addr_t dest_addr, void* context) = 0;
+    virtual ssize_t
+    w_fi_recv(struct fid_ep* ep, void* buf, size_t len, void* desc, fi_addr_t src_addr, void* context) = 0;
 };
 }  // namespace hccl
