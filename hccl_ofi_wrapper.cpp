@@ -1,12 +1,9 @@
 // Copyright (c) 2021 Habana Labs, Ltd.
 // SPDX-License-Identifier: BSD-3-Clause
 
-
 #include "hccl_ofi_wrapper.h"
 #include <cstring>
 
-namespace hccl
-{
 int ofi_plugin::w_fi_getinfo(int                   version,
                              const char*           node,
                              const char*           service,
@@ -230,4 +227,3 @@ extern "C" ofi_plugin_handle create_ofi_plugin_handle()
 {
     return std::unique_ptr<ofi_plugin>(new ofi_plugin());
 }
-}  // namespace hccl

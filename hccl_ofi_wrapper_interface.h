@@ -1,7 +1,6 @@
 // Copyright (c) 2021 Habana Labs, Ltd.
 // SPDX-License-Identifier: BSD-3-Clause
 
-
 #pragma once
 #include <iostream>
 #include <sys/socket.h>
@@ -16,28 +15,27 @@
 #include <rdma/fi_tagged.h>
 #include <rdma/fi_rma.h>
 
-namespace hccl
-{
 class ofi_plugin_interface;
 using ofi_plugin_interface_handle = std::unique_ptr<ofi_plugin_interface>;
 
 class ofi_plugin_interface
 {
 public:
+    virtual ~ofi_plugin_interface()                                             = default;
     virtual int             w_fi_getinfo(int                   version,
                                          const char*           node,
                                          const char*           service,
                                          uint64_t              flags,
                                          const struct fi_info* hints,
-                                         struct fi_info**      info)                                                 = 0;
-    virtual struct fi_info* w_fi_allocinfo()                                                                    = 0;
-    virtual void            w_fi_freeinfo(struct fi_info* info)                                                 = 0;
-    virtual const char*     w_fi_strerror(int err)                                                              = 0;
-    virtual char*           w_fi_tostr(const void* data, enum fi_type datatype)                                 = 0;
-    virtual int             w_fi_close(fid_t domain)                                                            = 0;
+                                         struct fi_info**      info)                 = 0;
+    virtual struct fi_info* w_fi_allocinfo()                                    = 0;
+    virtual void            w_fi_freeinfo(struct fi_info* info)                 = 0;
+    virtual const char*     w_fi_strerror(int err)                              = 0;
+    virtual char*           w_fi_tostr(const void* data, enum fi_type datatype) = 0;
+    virtual int             w_fi_close(fid_t domain)                            = 0;
     virtual int             w_fi_fabric(struct fi_fabric_attr* attr, struct fid_fabric** fabric, void* context) = 0;
     virtual int
-                w_fi_domain(struct fid_fabric* fabric, struct fi_info* info, struct fid_domain** domain, void* context) = 0;
+    w_fi_domain(struct fid_fabric* fabric, struct fi_info* info, struct fid_domain** domain, void* context)         = 0;
     virtual int w_fi_endpoint(struct fid_domain* domain, struct fi_info* info, struct fid_ep** ep, void* context)   = 0;
     virtual int w_fi_cq_open(struct fid_domain* domain, struct fi_cq_attr* attr, struct fid_cq** cq, void* context) = 0;
     virtual int w_fi_av_open(struct fid_domain* domain, struct fi_av_attr* attr, struct fid_av** av, void* context) = 0;
@@ -61,7 +59,7 @@ public:
                                fi_addr_t      src_addr,
                                uint64_t       tag,
                                uint64_t       ignore,
-                               void*          context)          = 0;
+                               void*          context) = 0;
 
     virtual ssize_t w_fi_cq_read(struct fid_cq* cq, void* buf, size_t count)                        = 0;
     virtual ssize_t w_fi_cq_readerr(struct fid_cq* cq, struct fi_cq_err_entry* buf, uint64_t flags) = 0;
@@ -70,7 +68,7 @@ public:
     virtual void* w_fi_mr_desc(struct fid_mr* mr)                                                                  = 0;
     virtual int
     w_fi_mr_regattr(struct fid_domain* domain, const struct fi_mr_attr* attr, uint64_t flags, struct fid_mr** mr) = 0;
-    virtual uint64_t w_fi_mr_key(struct fid_mr* mr) = 0;
+    virtual uint64_t w_fi_mr_key(struct fid_mr* mr)                                                               = 0;
 
     virtual ssize_t w_fi_read(struct fid_ep* ep,
                               void*          buf,
@@ -102,4 +100,3 @@ public:
     virtual ssize_t
     w_fi_recv(struct fid_ep* ep, void* buf, size_t len, void* desc, fi_addr_t src_addr, void* context) = 0;
 };
-}  // namespace hccl

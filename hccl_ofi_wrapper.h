@@ -1,7 +1,6 @@
 // Copyright (c) 2021 Habana Labs, Ltd.
 // SPDX-License-Identifier: BSD-3-Clause
 
-
 #pragma once
 #include <iostream>
 #include <sys/socket.h>
@@ -9,8 +8,6 @@
 #include <map>
 #include "hccl_ofi_wrapper_interface.h"
 
-namespace hccl
-{
 class ofi_plugin;
 using ofi_plugin_handle = std::unique_ptr<ofi_plugin>;
 #define OFI_PLUGIN_VERSION 1.1;
@@ -40,37 +37,37 @@ public:
     int w_fi_getname(fid_t fid, void* addr, size_t* addrlen);
     int w_fi_av_insert(struct fid_av* av, void* addr, size_t count, fi_addr_t* fi_addrs, uint64_t flags, void* context);
 
-    ssize_t     w_fi_tsend(struct fid_ep* ep,
-                           const void*    buf,
-                           size_t         len,
-                           void*          desc,
-                           fi_addr_t      dest_addr,
-                           uint64_t       tag,
-                           void*          context);
-    ssize_t     w_fi_trecv(struct fid_ep* ep,
-                           void*          buf,
-                           size_t         len,
-                           void*          desc,
-                           fi_addr_t      src_addr,
-                           uint64_t       tag,
-                           uint64_t       ignore,
-                           void*          context);
+    ssize_t w_fi_tsend(struct fid_ep* ep,
+                       const void*    buf,
+                       size_t         len,
+                       void*          desc,
+                       fi_addr_t      dest_addr,
+                       uint64_t       tag,
+                       void*          context);
+    ssize_t w_fi_trecv(struct fid_ep* ep,
+                       void*          buf,
+                       size_t         len,
+                       void*          desc,
+                       fi_addr_t      src_addr,
+                       uint64_t       tag,
+                       uint64_t       ignore,
+                       void*          context);
 
     ssize_t     w_fi_cq_read(struct fid_cq* cq, void* buf, size_t count);
     ssize_t     w_fi_cq_readerr(struct fid_cq* cq, struct fi_cq_err_entry* buf, uint64_t flags);
     const char* w_fi_cq_strerror(struct fid_cq* cq, int prov_errno, const void* err_data, char* buf, size_t len);
     void*       w_fi_mr_desc(struct fid_mr* mr);
     int w_fi_mr_regattr(struct fid_domain* domain, const struct fi_mr_attr* attr, uint64_t flags, struct fid_mr** mr);
-    uint64_t    w_fi_mr_key(struct fid_mr* mr);
-    ssize_t     w_fi_read(struct fid_ep* ep,
-                          void*          buf,
-                          size_t         len,
-                          void*          desc,
-                          fi_addr_t      src_addr,
-                          uint64_t       addr,
-                          uint64_t       key,
-                          void*          context);
-    uint32_t    w_fi_version();
+    uint64_t w_fi_mr_key(struct fid_mr* mr);
+    ssize_t  w_fi_read(struct fid_ep* ep,
+                       void*          buf,
+                       size_t         len,
+                       void*          desc,
+                       fi_addr_t      src_addr,
+                       uint64_t       addr,
+                       uint64_t       key,
+                       void*          context);
+    uint32_t w_fi_version();
 
     struct fi_info* w_fi_dupinfo(const struct fi_info* info);
 
@@ -87,4 +84,3 @@ public:
     ssize_t w_fi_send(struct fid_ep* ep, const void* buf, size_t len, void* desc, fi_addr_t dest_addr, void* context);
     ssize_t w_fi_recv(struct fid_ep* ep, void* buf, size_t len, void* desc, fi_addr_t src_addr, void* context);
 };
-}  // namespace hccl
