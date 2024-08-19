@@ -10,7 +10,7 @@
 
 class ofi_plugin;
 using ofi_plugin_handle = std::unique_ptr<ofi_plugin>;
-#define OFI_PLUGIN_VERSION 1.1;
+#define OFI_PLUGIN_VERSION 1.2;
 
 class ofi_plugin : public ofi_plugin_interface
 {

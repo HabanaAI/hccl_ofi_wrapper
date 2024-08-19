@@ -5,7 +5,7 @@ HCCL OFI wrapper introduced to act as a thin layer connecting between HCCL and l
 
 # Version
 
-1.0.<br />
+1.2.<br />
 
 # Prerequisites
 
