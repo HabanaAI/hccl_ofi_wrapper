@@ -21,7 +21,7 @@ Please follow the instructions below:<br />
 
 1. Define required version to be installed
    ```
-   export REQUIRED_VERSION=<version> (for example: 1.20.0)
+   export REQUIRED_VERSION=<version> (for example: 1.22.0)
    ```
 2. Download libfabric tarball from: https://github.com/ofiwg/libfabric/releases
    ```
